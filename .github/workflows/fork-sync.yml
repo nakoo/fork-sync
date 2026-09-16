@@ -1,0 +1,84 @@
+name: Sync Multiple Forks
+
+on:
+  schedule:
+    # Runs daily at 00:00 UTC.
+    - cron: '0 0 * * *'
+
+  # Allows manual triggers from the GitHub Actions web UI.
+  workflow_dispatch:
+
+# Deny default GITHUB_TOKEN permissions; all writes are authenticated via SYNC_PAT.
+permissions: {}
+
+# Prevent overlapping scheduled executions from running concurrently.
+concurrency:
+  group: sync-multiple-forks
+  cancel-in-progress: false
+
+jobs:
+  sync-forks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    strategy:
+      # Ensure failure of one fork does not cancel others.
+      fail-fast: false
+
+      matrix:
+        include:
+          - repo: "nakoo/NonGKI_Kernel_Build_2nd"
+            branch: "mainline"
+            source: "JackA1ltman/NonGKI_Kernel_Build_2nd"
+
+          - repo: "nakoo/android_kernel_google_msm-4.14"
+            branch: "lineage-23.2"
+            source: "LineageOS/android_kernel_google_msm-4.14"
+
+    steps:
+      - name: Verify SYNC_PAT exists
+        env:
+          GH_TOKEN: ${{ secrets.SYNC_PAT }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${GH_TOKEN:-}" ]; then
+            echo "SYNC_PAT secret is missing or empty." >&2
+            exit 1
+          fi
+
+          echo "SYNC_PAT is present."
+
+      - name: Show target configuration
+        env:
+          REPO: ${{ matrix.repo }}
+          BRANCH: ${{ matrix.branch }}
+          SOURCE: ${{ matrix.source }}
+        run: |
+          set -euo pipefail
+
+          echo "Target Repo:   $REPO"
+          echo "Target Branch: $BRANCH"
+
+          if [ -n "$SOURCE" ]; then
+            echo "Source Repo:   $SOURCE"
+          else
+            echo "Source Repo:   <auto-detected upstream>"
+          fi
+
+      - name: Synchronize fork with upstream
+        env:
+          GH_TOKEN: ${{ secrets.SYNC_PAT }}
+          REPO: ${{ matrix.repo }}
+          BRANCH: ${{ matrix.branch }}
+          SOURCE: ${{ matrix.source }}
+        run: |
+          set -euo pipefail
+
+          if [ -n "$SOURCE" ]; then
+            echo "Executing: gh repo sync $REPO --branch $BRANCH --source $SOURCE"
+            gh repo sync "$REPO" --branch "$BRANCH" --source "$SOURCE"
+          else
+            echo "Executing: gh repo sync $REPO --branch $BRANCH"
+            gh repo sync "$REPO" --branch "$BRANCH"
+          fi
