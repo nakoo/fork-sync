@@ -2,8 +2,8 @@ name: Sync Multiple Forks
 
 on:
   schedule:
-    # Runs daily at 00:00 UTC.
-    - cron: '0 0 * * *'
+    # Runs every 4 hours (at 00:00, 04:00, 08:00, 12:00, 16:00, 20:00 UTC)
+    - cron: '15 */4 * * *'
 
   # Allows manual triggers from the GitHub Actions web UI.
   workflow_dispatch:
@@ -34,6 +34,10 @@ jobs:
           - repo: "nakoo/android_kernel_google_msm-4.14"
             branch: "lineage-23.2"
             source: "LineageOS/android_kernel_google_msm-4.14"
+
+          - repo: "nakoo/ReSukiSU"
+            branch: "main"
+            source: "ReSukiSU/ReSukiSU"
 
     steps:
       - name: Verify SYNC_PAT exists
