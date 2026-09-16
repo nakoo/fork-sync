@@ -39,6 +39,18 @@ jobs:
             branch: "main"
             source: "ReSukiSU/ReSukiSU"
 
+          - repo: "nakoo/TEESimulator"
+            branch: "dev"
+            source: "JingMatrix/TEESimulator"
+
+          - repo: "nakoo/NeoZygisk"
+            branch: "master"
+            source: "JingMatrix/NeoZygisk"
+
+          - repo: "nakoo/specter"
+            branch: "main"
+            source: "dpejoh/specter"
+
     steps:
       - name: Verify SYNC_PAT exists
         env:
