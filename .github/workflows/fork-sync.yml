@@ -51,6 +51,10 @@ jobs:
             branch: "main"
             source: "dpejoh/specter"
 
+          - repo: "nakoo/BRENE"
+            branch: "main"
+            source: "rrr333nnn333/BRENE"
+
     steps:
       - name: Verify SYNC_PAT exists
         env:
