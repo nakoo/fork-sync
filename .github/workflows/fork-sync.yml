@@ -55,6 +55,10 @@ jobs:
             branch: "main"
             source: "rrr333nnn333/BRENE"
 
+          - repo: "nakoo/Baseband-guard"
+            branch: "main"
+            source: "vc-teahouse/Baseband-guard"
+
     steps:
       - name: Verify SYNC_PAT exists
         env:
