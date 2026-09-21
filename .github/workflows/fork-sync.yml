@@ -27,10 +27,6 @@ jobs:
 
       matrix:
         include:
-          - repo: "nakoo/NonGKI_Kernel_Build_2nd"
-            branch: "mainline"
-            source: "JackA1ltman/NonGKI_Kernel_Build_2nd"
-
           - repo: "nakoo/android_kernel_google_msm-4.14"
             branch: "lineage-23.2"
             source: "LineageOS/android_kernel_google_msm-4.14"
@@ -39,13 +35,21 @@ jobs:
             branch: "main"
             source: "ReSukiSU/ReSukiSU"
 
-          - repo: "nakoo/TEESimulator"
-            branch: "dev"
-            source: "JingMatrix/TEESimulator"
+          - repo: "nakoo/NonGKI_Kernel_Build_2nd"
+            branch: "mainline"
+            source: "JackA1ltman/NonGKI_Kernel_Build_2nd"
+
+          - repo: "nakoo/Baseband-guard"
+            branch: "main"
+            source: "vc-teahouse/Baseband-guard"
 
           - repo: "nakoo/NeoZygisk"
             branch: "master"
             source: "JingMatrix/NeoZygisk"
+
+          - repo: "nakoo/TEESimulator"
+            branch: "dev"
+            source: "JingMatrix/TEESimulator"
 
           - repo: "nakoo/specter"
             branch: "main"
@@ -55,9 +59,9 @@ jobs:
             branch: "main"
             source: "rrr333nnn333/BRENE"
 
-          - repo: "nakoo/Baseband-guard"
-            branch: "main"
-            source: "vc-teahouse/Baseband-guard"
+          - repo: "nakoo/ih8SecureLock"
+            branch: "master"
+            source: "j-hc/ih8SecureLock"
 
     steps:
       - name: Verify SYNC_PAT exists
