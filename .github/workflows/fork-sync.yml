@@ -31,7 +31,7 @@ jobs:
             branch: "lineage-23.2"
             source: "LineageOS/android_kernel_google_msm-4.14"
 
-          - repo: "nakoo/Baka-SU"
+          - repo: "nakoo/BakaSU"
             branch: "main"
             source: "Baka-SU/BakaSU"
 
