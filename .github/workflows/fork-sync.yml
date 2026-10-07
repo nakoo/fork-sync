@@ -63,6 +63,10 @@ jobs:
             branch: "master"
             source: "j-hc/ih8SecureLock"
 
+          - repo: "nakoo/kime"
+            branch: "develop"
+            source: "Riey/kime"
+
     steps:
       - name: Verify SYNC_PAT exists
         env:
