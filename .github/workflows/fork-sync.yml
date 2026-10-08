@@ -44,7 +44,7 @@ jobs:
             source: "vc-teahouse/Baseband-guard"
 
           - repo: "nakoo/nomount"
-            branch: "main"
+            branch: "master"
             source: "maxsteeel/nomount"
 
           - repo: "nakoo/NeoZygisk"
@@ -64,7 +64,7 @@ jobs:
             source: "dpejoh/specter"
 
           - repo: "nakoo/HMA-OSS"
-            branch: "main"
+            branch: "master"
             source: "frknkrc44/HMA-OSS"
 
           - repo: "nakoo/BRENE"
