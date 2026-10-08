@@ -31,17 +31,21 @@ jobs:
             branch: "lineage-23.2"
             source: "LineageOS/android_kernel_google_msm-4.14"
 
-          - repo: "nakoo/BakaSU"
-            branch: "main"
-            source: "Baka-SU/BakaSU"
-
           - repo: "nakoo/NonGKI_Kernel_Build_2nd"
             branch: "mainline"
             source: "JackA1ltman/NonGKI_Kernel_Build_2nd"
 
+          - repo: "nakoo/BakaSU"
+            branch: "main"
+            source: "Baka-SU/BakaSU"
+
           - repo: "nakoo/Baseband-guard"
             branch: "main"
             source: "vc-teahouse/Baseband-guard"
+
+          - repo: "nakoo/nomount"
+            branch: "main"
+            source: "maxsteeel/nomount"
 
           - repo: "nakoo/NeoZygisk"
             branch: "master"
@@ -51,9 +55,17 @@ jobs:
             branch: "dev"
             source: "JingMatrix/TEESimulator"
 
+          - repo: "nakoo/PlayIntegrityFork"
+            branch: "main"
+            source: "osm0sis/PlayIntegrityFork"
+
           - repo: "nakoo/specter"
             branch: "main"
             source: "dpejoh/specter"
+
+          - repo: "nakoo/HMA-OSS"
+            branch: "main"
+            source: "frknkrc44/HMA-OSS"
 
           - repo: "nakoo/BRENE"
             branch: "main"
