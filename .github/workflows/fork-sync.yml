@@ -126,3 +126,25 @@ jobs:
             echo "Executing: gh repo sync $REPO --branch $BRANCH"
             gh repo sync "$REPO" --branch "$BRANCH"
           fi
+
+  sync-bakasu-pr:
+    needs: sync-forks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build and push main-with-pr-637 branch
+        env:
+          GH_TOKEN: ${{ secrets.SYNC_PAT }}
+        run: |
+          set -euo pipefail
+
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          git clone "https://x-access-token:${GH_TOKEN}@github.com/nakoo/BakaSU.git" repo
+          cd repo
+
+          git remote add upstream https://github.com/Baka-SU/BakaSU.git
+          git fetch upstream pull/637/head:pr-637
+          git checkout -B main-with-pr-637 origin/main
+          git merge --no-edit pr-637
+          git push origin main-with-pr-637 --force
