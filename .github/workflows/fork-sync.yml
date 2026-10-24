@@ -131,7 +131,7 @@ jobs:
     needs: sync-forks
     runs-on: ubuntu-latest
     steps:
-      - name: Build and push main-with-pr-637 branch
+      - name: Update main-with-pr-637 with latest upstream main
         env:
           GH_TOKEN: ${{ secrets.SYNC_PAT }}
         run: |
@@ -144,14 +144,15 @@ jobs:
           cd repo
 
           git remote add upstream https://github.com/Baka-SU/BakaSU.git
-          git fetch upstream pull/637/head:pr-637
-          git checkout -B main-with-pr-637 origin/main
-          if ! git merge --no-edit pr-637; then
-            echo "::error::Merge conflict detected when applying PR 637 to main."
+          git fetch upstream main
+          git checkout main-with-pr-637
+          git merge --no-edit upstream/main
+          if ! git merge --no-edit upstream/main; then
+            echo "::error::Merge conflict detected when syncing main-with-pr-637 with upstream/main."
             echo "=== Conflicted Files ==="
             git diff --name-only --diff-filter=U
             echo "=== Conflict Details ==="
             git diff
             exit 1
           fi
-          git push origin main-with-pr-637 --force
+          git push origin main-with-pr-637
