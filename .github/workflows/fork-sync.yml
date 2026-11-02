@@ -2,8 +2,8 @@ name: Sync Multiple Forks
 
 on:
   schedule:
-    # Runs every 4 hours (at 00:00, 04:00, 08:00, 12:00, 16:00, 20:00 UTC)
-    - cron: '15 */4 * * *'
+    # Runs every 2 hours
+    - cron: '15 */2 * * *'
 
   # Allows manual triggers from the GitHub Actions web UI.
   workflow_dispatch:
