@@ -47,6 +47,10 @@ jobs:
             branch: "master"
             source: "maxsteeel/nomount"
 
+          - repo: "nakoo/fgetpriority"
+            branch: "master"
+            source: "aerath-stuff/fgetpriority"
+
           - repo: "nakoo/NeoZygisk"
             branch: "master"
             source: "JingMatrix/NeoZygisk"
