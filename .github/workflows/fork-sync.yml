@@ -79,6 +79,10 @@ jobs:
             branch: "master"
             source: "j-hc/ih8SecureLock"
 
+          - repo: "nakoo/Nought"
+            branch: "main"
+            source: "0xbbuddha/Nought"
+
           - repo: "nakoo/kime"
             branch: "develop"
             source: "Riey/kime"
